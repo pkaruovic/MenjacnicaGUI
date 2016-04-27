@@ -181,6 +181,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnDodajKurs() {
 		if (btnDodajKurs == null) {
 			btnDodajKurs = new JButton("Dodaj kurs");
+			btnDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.napraviProzorZaNoviKurs();
+				}
+			});
 			btnDodajKurs.setPreferredSize(new Dimension(100, 23));
 		}
 		return btnDodajKurs;
@@ -257,5 +262,9 @@ public class MenjacnicaGUI extends JFrame {
 			textArea = new JTextArea();
 		}
 		return textArea;
+	}
+	
+	public void upisiUStatus(String s){
+		textArea.append(s);
 	}
 }

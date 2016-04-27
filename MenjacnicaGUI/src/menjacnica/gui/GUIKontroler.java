@@ -63,4 +63,14 @@ public class GUIKontroler {
 	public static void prikaziPodatkeOAutoru(){
 		JOptionPane.showMessageDialog(glavniProzor, "Ime i prezime: Petar Karuovic\n Datum rodjenja: 12.11.1995.\n Mesto rodjenja: Leskovac\n Zanimanje: Student", "About", JOptionPane.NO_OPTION);
 	}
+	
+	public static void dodaj(String sifra, String naziv, String prodajniKurs, String kupovniKurs, String srednjiKurs, String skraceniNaziv){
+		glavniProzor.upisiUStatus("Dodat je novi kurs sa atributima: " + sifra + " " + naziv + " " + prodajniKurs + " " + kupovniKurs + " " + srednjiKurs + " " + skraceniNaziv); 
+	}
+	
+	public static void napraviProzorZaNoviKurs(){
+		DodajKursGUI dodajKurs = new DodajKursGUI();
+		dodajKurs.setVisible(true);
+		dodajKurs.setLocationRelativeTo(null);
+	}
 }
