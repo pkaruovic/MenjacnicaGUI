@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import javax.swing.border.TitledBorder;
 
+import menjacnica.kurs.Kurs;
 import modelitabele.ModelTabele;
 
 import javax.swing.border.LineBorder;
@@ -34,6 +35,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 public class MenjacnicaGUI extends JFrame {
 
@@ -68,7 +70,7 @@ public class MenjacnicaGUI extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/slike/dinar.jpg")));
 		setTitle("Menjacnica");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 545, 361);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -163,7 +165,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JTable getTable() {
 		if (table == null) {
 			table = new JTable();
-			table.setModel(new ModelTabele());
+			table.setModel(new ModelTabele(GUIKontroler.vratiKurseve()));
 		}
 		return table;
 	}
@@ -242,6 +244,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmDodajKurs() {
 		if (mntmDodajKurs == null) {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.napraviProzorZaNoviKurs();
+				}
+			});
 		}
 		return mntmDodajKurs;
 	}
@@ -265,6 +272,10 @@ public class MenjacnicaGUI extends JFrame {
 	}
 	
 	public void upisiUStatus(String s){
-		textArea.append(s);
+		textArea.append(s + "\n");
+	}
+	
+	public void osveziTabelu(ArrayList<Kurs> kursevi){
+		((ModelTabele)table.getModel()).osveziPodatke(kursevi);
 	}
 }

@@ -2,17 +2,23 @@ package menjacnica.gui;
 
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
+import menjacnica.kurs.Kurs;
+import menjacnica.kurs.Menjacnica;
+
 public class GUIKontroler {
 	private static MenjacnicaGUI glavniProzor;
+	private static Menjacnica menjacnica;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					menjacnica = new Menjacnica();
 					glavniProzor = new MenjacnicaGUI();
 					glavniProzor.setVisible(true);
 				} catch (Exception e) {
@@ -66,6 +72,17 @@ public class GUIKontroler {
 	
 	public static void dodaj(String sifra, String naziv, String prodajniKurs, String kupovniKurs, String srednjiKurs, String skraceniNaziv){
 		glavniProzor.upisiUStatus("Dodat je novi kurs sa atributima: " + sifra + " " + naziv + " " + prodajniKurs + " " + kupovniKurs + " " + srednjiKurs + " " + skraceniNaziv); 
+		Kurs k = new Kurs(sifra, naziv, Double.parseDouble(prodajniKurs.trim()), Double.parseDouble(kupovniKurs.trim()), Double.parseDouble(srednjiKurs.trim()), skraceniNaziv);
+		dodajKursUMenjacnicu(k);
+		glavniProzor.osveziTabelu(vratiKurseve());
+	}
+	
+	public static ArrayList<Kurs> vratiKurseve(){
+		return menjacnica.getKursevi();
+	}
+	
+	public static void dodajKursUMenjacnicu(Kurs k){
+		menjacnica.dodajKurs(k);	
 	}
 	
 	public static void napraviProzorZaNoviKurs(){
