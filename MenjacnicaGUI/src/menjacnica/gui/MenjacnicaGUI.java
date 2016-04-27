@@ -207,6 +207,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnIzvrsiZamenu() {
 		if (btnIzvrsiZamenu == null) {
 			btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
+			btnIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.napraviProzorZaZamenu();
+				}
+			});
 			btnIzvrsiZamenu.setPreferredSize(new Dimension(115, 23));
 		}
 		return btnIzvrsiZamenu;
@@ -266,6 +271,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIzvrsiZamenu() {
 		if (mntmIzvrsiZamenu == null) {
 			mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+			mntmIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.napraviProzorZaZamenu();
+				}
+			});
 		}
 		return mntmIzvrsiZamenu;
 	}
@@ -275,6 +285,7 @@ public class MenjacnicaGUI extends JFrame {
 			textArea.setPreferredSize(new Dimension(4, 40));
 			textArea.setMaximumSize(new Dimension(2147483647, 200));
 			textArea.setEditable(false);
+			textArea.setAutoscrolls(true);
 		}
 		return textArea;
 	}

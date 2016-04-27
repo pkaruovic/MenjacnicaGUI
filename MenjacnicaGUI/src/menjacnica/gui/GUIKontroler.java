@@ -114,4 +114,15 @@ public class GUIKontroler {
 		dodajKurs.setVisible(true);
 		dodajKurs.setLocationRelativeTo(null);
 	}
+	
+	public static void napraviProzorZaZamenu(){
+		IzvrsiZamenuGUI prozorZaZamenu = new IzvrsiZamenuGUI();
+		prozorZaZamenu.setVisible(true);
+		prozorZaZamenu.setLocationRelativeTo(null);
+	}
+
+	public static void izvrsiZamenu(String s) {
+		if(!s.isEmpty())
+			glavniProzor.upisiUStatus("Izvrsena zamena: " + s);	
+	}
 }
