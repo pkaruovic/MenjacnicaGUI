@@ -15,6 +15,13 @@ public class Menjacnica {
 		
 		kursevi.add(k);
 	}
+	
+	public void izbrisiKurs(int pozicija){
+		if(pozicija < 0)
+			return;
+		
+		kursevi.remove(pozicija);
+	}
 
 	public ArrayList<Kurs> getKursevi() {
 		return kursevi;

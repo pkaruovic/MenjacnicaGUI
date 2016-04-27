@@ -77,12 +77,36 @@ public class GUIKontroler {
 		glavniProzor.osveziTabelu(vratiKurseve());
 	}
 	
+	public static void izbrisi(){
+		try {
+			int pozicija = glavniProzor.vratiSelektovanRed();
+			
+			if(pozicija == -1){
+				JOptionPane.showMessageDialog(glavniProzor, "Izaberite red koji zelite da izbrisete", "Greska", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			int povratnaVrednost = JOptionPane.showConfirmDialog(glavniProzor, "Da li ste sigurni da zelite da izbrisete selektovani red?", "Upozorenje",JOptionPane.YES_NO_OPTION);
+			
+			if(povratnaVrednost == JOptionPane.YES_OPTION){
+				izbrisiKursIzMenjacnice(pozicija);
+				glavniProzor.osveziTabelu(vratiKurseve());
+				glavniProzor.upisiUStatus("Izbrisan je red sa indeksom: " + pozicija + "!");
+			}
+		} catch (HeadlessException e) {
+			JOptionPane.showMessageDialog(glavniProzor, "Doslo je do greske prilikom brisanja!" + e.getMessage(), "Greska", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
 	public static ArrayList<Kurs> vratiKurseve(){
 		return menjacnica.getKursevi();
 	}
 	
 	public static void dodajKursUMenjacnicu(Kurs k){
 		menjacnica.dodajKurs(k);	
+	}
+	
+	public static void izbrisiKursIzMenjacnice(int pozicija){
+		menjacnica.izbrisiKurs(pozicija);
 	}
 	
 	public static void napraviProzorZaNoviKurs(){

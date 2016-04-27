@@ -70,7 +70,7 @@ public class MenjacnicaGUI extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MenjacnicaGUI.class.getResource("/slike/dinar.jpg")));
 		setTitle("Menjacnica");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 545, 361);
+		setBounds(100, 100, 562, 361);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -172,7 +172,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setPreferredSize(new Dimension(120, 10));
+			panel.setPreferredSize(new Dimension(130, 10));
 			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			panel.add(getBtnDodajKurs());
 			panel.add(getBtnIzbrisiKurs());
@@ -188,21 +188,26 @@ public class MenjacnicaGUI extends JFrame {
 					GUIKontroler.napraviProzorZaNoviKurs();
 				}
 			});
-			btnDodajKurs.setPreferredSize(new Dimension(100, 23));
+			btnDodajKurs.setPreferredSize(new Dimension(115, 23));
 		}
 		return btnDodajKurs;
 	}
 	private JButton getBtnIzbrisiKurs() {
 		if (btnIzbrisiKurs == null) {
 			btnIzbrisiKurs = new JButton(" Izbrisi kurs");
-			btnIzbrisiKurs.setPreferredSize(new Dimension(100, 23));
+			btnIzbrisiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.izbrisi();
+				}
+			});
+			btnIzbrisiKurs.setPreferredSize(new Dimension(115, 23));
 		}
 		return btnIzbrisiKurs;
 	}
 	private JButton getBtnIzvrsiZamenu() {
 		if (btnIzvrsiZamenu == null) {
 			btnIzvrsiZamenu = new JButton("Izvrsi zamenu");
-			btnIzvrsiZamenu.setPreferredSize(new Dimension(100, 23));
+			btnIzvrsiZamenu.setPreferredSize(new Dimension(115, 23));
 		}
 		return btnIzvrsiZamenu;
 	}
@@ -267,6 +272,9 @@ public class MenjacnicaGUI extends JFrame {
 	private JTextArea getTextArea_1() {
 		if (textArea == null) {
 			textArea = new JTextArea();
+			textArea.setPreferredSize(new Dimension(4, 40));
+			textArea.setMaximumSize(new Dimension(2147483647, 200));
+			textArea.setEditable(false);
 		}
 		return textArea;
 	}
@@ -277,5 +285,9 @@ public class MenjacnicaGUI extends JFrame {
 	
 	public void osveziTabelu(ArrayList<Kurs> kursevi){
 		((ModelTabele)table.getModel()).osveziPodatke(kursevi);
+	}
+	
+	public int vratiSelektovanRed(){
+		return table.getSelectedRow();
 	}
 }
