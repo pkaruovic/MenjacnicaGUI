@@ -53,11 +53,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton btnDodajKurs;
 	private JButton btnIzbrisiKurs;
 	private JButton btnIzvrsiZamenu;
-	private JPanel panel_1;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmDodajKurs;
 	private JMenuItem mntmIzbrisiKurs;
 	private JMenuItem mntmIzvrsiZamenu;
+	private JScrollPane scrollPane_1;
 	private JTextArea textArea;
 
 	public MenjacnicaGUI() {
@@ -78,7 +78,7 @@ public class MenjacnicaGUI extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
 		contentPane.add(getPanel(), BorderLayout.EAST);
-		contentPane.add(getPanel_1(), BorderLayout.SOUTH);
+		contentPane.add(getScrollPane_1(), BorderLayout.SOUTH);
 	}
 
 	private JMenuBar getMenuBar_1() {
@@ -216,15 +216,6 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return btnIzvrsiZamenu;
 	}
-	private JPanel getPanel_1() {
-		if (panel_1 == null) {
-			panel_1 = new JPanel();
-			panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, Color.BLACK));
-			panel_1.setLayout(new BorderLayout(0, 0));
-			panel_1.add(getTextArea_1(), BorderLayout.CENTER);
-		}
-		return panel_1;
-	}
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -279,16 +270,6 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return mntmIzvrsiZamenu;
 	}
-	private JTextArea getTextArea_1() {
-		if (textArea == null) {
-			textArea = new JTextArea();
-			textArea.setPreferredSize(new Dimension(4, 40));
-			textArea.setMaximumSize(new Dimension(2147483647, 200));
-			textArea.setEditable(false);
-			textArea.setAutoscrolls(true);
-		}
-		return textArea;
-	}
 	
 	public void upisiUStatus(String s){
 		textArea.append(s + "\n");
@@ -300,5 +281,19 @@ public class MenjacnicaGUI extends JFrame {
 	
 	public int vratiSelektovanRed(){
 		return table.getSelectedRow();
+	}
+	private JScrollPane getScrollPane_1() {
+		if (scrollPane_1 == null) {
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			scrollPane_1.setViewportView(getTextArea());
+		}
+		return scrollPane_1;
+	}
+	private JTextArea getTextArea() {
+		if (textArea == null) {
+			textArea = new JTextArea();
+		}
+		return textArea;
 	}
 }
